@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectolab;
 
 import java.util.Scanner;
 
-/**
- *
- * @author omarr
- */
 public class Menu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -27,7 +18,7 @@ public class Menu {
             scanner.nextLine(); 
 
             switch (option) {
-                case 1 -> {
+                case 1: {
                     System.out.print("Username: ");
                     String username = scanner.nextLine();
                     System.out.print("Password: ");
@@ -38,21 +29,24 @@ public class Menu {
                         System.out.println("Credenciales incorrectas. Intente nuevamente.");
                     }
                 }
-                case 2 -> {
+                case 2: {
                     System.out.print("Ingrese un username: ");
                     String newUsername = scanner.nextLine();
                     System.out.print("Ingrese un password: ");
                     String newPassword = scanner.nextLine();
                     ghost.registerPlayer(newUsername, newPassword);
                 }
-                case 3 -> System.out.println("Saliendo del programa. Hasta luego!");
-                default -> System.out.println("Opcion no valida.");
+                case 3: {
+                    System.out.println("Saliendo del programa. Hasta luego!");
+                    break;
+                }
+                default: System.out.println("Opcion no valida.");
             }
         } while (option != 3);
 
         scanner.close();
     }
-
+        
     static void showMainMenu(Ghost ghost, Scanner scanner) {
         int option;
         do {
@@ -67,15 +61,15 @@ public class Menu {
             scanner.nextLine();
 
             switch (option) {
-                case 1 -> playGhosts(ghost, scanner);
-                case 2 -> showReports(ghost, scanner);
-                case 3 -> showProfile(ghost, scanner);
-                case 4 -> configureSettings(ghost, scanner);
-                case 5 -> {
+                case 1:  playGhosts(ghost, scanner);
+                case 2:  showReports(ghost, scanner);
+                case 3:  showProfile(ghost, scanner);
+                case 4:  configureSettings(ghost, scanner);
+                case 5:  {
                     ghost.logout();
                     System.out.println("Sesion cerrada. Regresando al menu de inicio...");
                 }
-                default -> System.out.println("Opcion no valida.");
+                default:  System.out.println("Opcion no valida.");
             }
         } while (option != 5);
     }
@@ -104,10 +98,10 @@ public class Menu {
             scanner.nextLine();
 
             switch (option) {
-                case 1 -> ghost.showLast10Games();
-                case 2 -> ghost.showRanking();
-                case 3 -> System.out.println("Regresando al menu principal...");
-                default -> System.out.println("Opcion no valida.");
+                case 1:  ghost.showLast10Games();
+                case 2:  ghost.showRanking();
+                case 3: System.out.println("Regresando al menu principal...");
+                default:  System.out.println("Opcion no valida.");
             }
         } while (option != 3);
     }
@@ -127,18 +121,18 @@ public class Menu {
                 scanner.nextLine();
 
                 switch (option) {
-                    case 1 -> {
+                    case 1:  {
                         System.out.println("Datos del Usuario:");
                         System.out.println("Username: " + currentUser.getUsername());
                         System.out.println("Puntos: " + currentUser.getPoints());
                     }
-                    case 2 -> {
+                    case 2:  {
                         System.out.print("Ingrese la nueva contraseña: ");
                         String newPassword = scanner.nextLine();
                         ghost.changePassword(newPassword);
                         System.out.println("Contraseña actualizada.");
                     }
-                    case 3 -> {
+                    case 3:  {
                         System.out.print("¿Esta seguro que desea eliminar su cuenta? (S/N): ");
                         char confirm = scanner.nextLine().toUpperCase().charAt(0);
                         if (confirm == 'S') {
@@ -149,9 +143,11 @@ public class Menu {
                             System.out.println("Operacion cancelada.");
                         }
                     }
-                    case 4 -> System.out.println("Regresando al menu principal...");
-                    default -> System.out.println("Opcion no valida.");
+                    case 4:  System.out.println("Regresando al menu principal...");
+                    
+                    default:  System.out.println("Opcion no valida.");
                 }
+               
             } while (option != 4);
         } else {
             System.out.println("No hay un usuario logueado.");
@@ -159,7 +155,7 @@ public class Menu {
     }
 
     static void configureSettings(Ghost ghost, Scanner scanner) {
-        int option;
+        int option = 0;
         do {
             System.out.println("\nConfiguracion:");
             System.out.println("1. Seleccionar dificultad");
@@ -169,21 +165,22 @@ public class Menu {
             option = scanner.nextInt();
 
             switch (option) {
-                case 1 -> {
+                case 1:  {
                     System.out.print("Elija dificultad (0: Normal, 1: Experto, 2: Genio): ");
                     int difficulty = scanner.nextInt();
                     ghost.setDifficulty(difficulty);
                     System.out.println("Dificultad actualizada.");
                 }
-                case 2 -> {
+                case 2:  {
                     System.out.print("Elija modo (0: Aleatorio, 1: Manual): ");
                     int mode = scanner.nextInt();
                     ghost.setMode(mode);
                     System.out.println("Modo actualizado.");
                 }
-                case 3 -> System.out.println("Regresando al menu principal...");
-                default -> System.out.println("Opcion no valida.");
+                case 3:  System.out.println("Regresando al menu principal...");
+                default:  System.out.println("Opcion no valida.");
             }
         } while (option != 3);
     }
 }
+
